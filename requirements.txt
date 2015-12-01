@@ -1,0 +1,2 @@
+couchbase>=2.0.4
+flask>=0.10.1

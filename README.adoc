@@ -1,0 +1,75 @@
+// General purpose tags describing what kind of project this ties into
+:tags: [flask, webservers]
+
+// Language of the starter kit
+:language: python
+
+// What is needed for this project (this might better go into language-specific sections,
+// unless it requires an external product (for example, another server). For repeated
+// requirements it should be possible to use an asciidoc include to include more
+// detailed explanations
+:requirements: [Flask]
+
+// This text is displayed as the short description of the project
+:blurb: Demonstrate exposing Couchbase functionality via a REST API using Flask
+
+// Used to distinguish between example/guide types. We might also add "guide", etc.
+:type: starter
+
+// This should eventually go into a common header:
+:source-highlighter: highlightjs
+
+== Couchbase Flask Gateway
+
+This project contains a simple Flask application which exposes various
+Couchbase APIs using a REST API. Consumers of this API can retrieve, modify
+and query documents using simple HTTP verbs.
+
+=== Running
+
+[source,sh]
+.Running the server
+----
+$ pip install -r requirements.txt
+$ python cbflask.py
+# Will show the port the server is running on. This is typically 5000
+----
+
+[source,sh]
+.Storing a document
+----
+echo '{"name":"Couchbase", "email":"couchbase@couchbase.com", "company":"Couchbase"}' | curl -XPUT http://localhost:5000/id/user:couchbase --data-binary @-
+echo '{"name":"Mark", "email":"markn@couchbase.com", "company":"Couchbase"}' | curl -XPUT http://localhost:5000/id/user:mark --data-binary @-
+echo '{"name":"Jimbo", "email":"jimbo@jimbosoft.com", "company":"Jimbosoft"}' | curl -XPUT http://localhost:5000/id/user:jimbo --data-binary @-
+----
+
+[source,sh]
+.Retrieving a document
+----
+curl http://localhost:5000/id/user:1234
+# {"email": "couchbase@couchbase.com", "name": "Couchbase"}
+----
+
+[source]
+.Querying for a document
+----
+curl http://localhost:5000/query/default?company=Couchbase | python -m json.tool
+[
+    {
+        "company": "Couchbase",
+        "email": "couchbase@couchbase.com",
+        "name": "Couchbase"
+    },
+    {
+        "company": "Couchbase",
+        "email": "markn@couchbase.com",
+        "name": "Mark"
+    }
+]
+----
+
+=== N1QL Querying and indexes
+
+The application demonstrates several aspects of constructing N1QL queries in Python, such
+as creating an index and iterating over the results. Play around with the resultsets and
+queries to see how richer functionality can be acheived.
