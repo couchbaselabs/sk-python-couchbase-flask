@@ -1,7 +1,7 @@
 // General purpose tags describing what kind of project this ties into
 :tags: [flask, webservers]
 
-// Language of the starter kit
+// Primary language of the starter kit
 :language: python
 
 // What is needed for this project (this might better go into language-specific sections,
@@ -13,17 +13,23 @@
 // This text is displayed as the short description of the project
 :blurb: Demonstrate exposing Couchbase functionality via a REST API using Flask
 
-// Used to distinguish between example/guide types. We might also add "guide", etc.
+// Used to distinguish between example/guide types. We might also add "howto", etc.
 :type: starter
 
 // This should eventually go into a common header:
 :source-highlighter: highlightjs
 
-== Couchbase Flask Gateway
+= Couchbase Python Flask Gateway
 
-This project contains a simple Flask application which exposes various
-Couchbase APIs using a REST API. Consumers of this API can retrieve, modify
+== What this is
+
+This project contains a simple Flask bootstrap sample which exposes various
+REST APIs backed by Couchbase functionality. Consumers of this API can retrieve, modify
 and query documents using simple HTTP verbs.
+
+== How to use this
+
+Clone this starter kit and set it up for your Couchbase Cluster including the bucket by editing the source.  Then modify it to suit your needs.  To make this your own project you can `rm -rf .git` in the cloned project and then `git init` to make it your own project.
 
 === Running
 
@@ -68,8 +74,13 @@ curl http://localhost:5000/query/default?company=Couchbase | python -m json.tool
 ]
 ----
 
-=== N1QL Querying and indexes
+=== Where to go from here
 
-The application demonstrates several aspects of constructing N1QL queries in Python, such
+This starter kit demonstrates several aspects of constructing N1QL queries in Python, such
 as creating an index and iterating over the results. Play around with the resultsets and
-queries to see how richer functionality can be acheived.
+queries to see how richer functionality can be acheived.  Look at the Developer Guide samples on Python and N1QL and the N1QL language reference for more details on how to use these Couchbase features.
+
+=== See also
+* http://developer.couchbase.com/documentation/server/4.0/developer-guide/creating-documents.html[Developer guide sections on basic operation]
+* http://developer.couchbase.com/documentation/server/4.0/developer-guide/querying.html[Developer guide sections on N1QL]
+* http://developer.couchbase.com/documentation/server/4.0/n1ql/n1ql-intro/data-access-using-n1ql.html[N1QL Documentation]
